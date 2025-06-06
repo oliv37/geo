@@ -1,0 +1,35 @@
+<main class="h-screen flex flex-col min-h-[28rem]">
+  <div
+    class="h-1.5 bg-amber-700 transition-all"
+    [style.width]="progressPercent() + '%'"
+  ></div>
+  <div id="map-container" class="flex-1 relative" #mapContainerEl>
+    <ng-container *ngComponentOutlet="Map(); inputs: mapInputs;"></ng-container>
+  </div>
+  <div class="p-6 flex flex-col gap-4 justify-around items-center min-h-34">
+    <div class="w-full flex items-center gap-8 h-8">
+      @for (field of fields(); track $index) {
+      <span
+        class="flex-1 text-2xl"
+        [class.text-right]="$index === 0"
+        [class.text-left]="$index === $count - 1"
+        [class.font-bold]="$index === fieldIndex()"
+      >
+        @if (isClientSide) { @if (step().showHint || fieldIndex() > $index ) {
+        {{ currentItem()[field] }} } @else if (fieldIndex() === $index) { {{
+        textValid() }} }}
+      </span>
+      }
+    </div>
+    <input
+      type="text"
+      [class]="
+        'py-1 border-b-2 border-black outline-none ' + 
+        'text-center w-full max-w-80 text-3xl font-bold'
+      "
+      [value]="text()"
+      (input)="text.set($any($event.target).value)"
+      #inputEl
+    />
+  </div>
+</main>
