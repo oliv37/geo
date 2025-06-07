@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
-import { Exercice } from '@components/exercice/exercice';
-import { UsaStateMap } from '@components/maps/usa-state-map/usa-state-map';
+import { Component } from '@angular/core';
 import { usaStateData } from '@datas/usa-state-data';
+import { Exercice } from '@components/exercice/exercice';
+import { UsaStateMap } from '@components/map/usa-state-map/usa-state-map';
 
 @Component({
   imports: [Exercice],

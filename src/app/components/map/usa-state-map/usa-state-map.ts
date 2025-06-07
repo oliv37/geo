@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AbstractMap } from '@components/maps/abstract-map';
+import { Map } from '@components/map/map';
 
 @Component({
   selector: 'app-usa-state-map',
   templateUrl: './usa-state-map.html',
 })
-export class UsaStateMap extends AbstractMap {}
+export class UsaStateMap extends Map {}

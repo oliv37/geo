@@ -1,0 +1,20 @@
+<div class="flex justify-center items-center gap-6">
+  @if (showPrevBtn()) {
+  <button type="button" class="cursor-pointer" (click)="prevItem()">
+    prev
+  </button>
+  }
+  <input
+    type="text"
+    [class]="'py-1 border-b-2 border-black outline-none ' +
+      'w-full max-w-80 text-center text-3xl font-bold'"
+    [value]="text()"
+    (input)="updateText($any($event.target).value)"
+    #inputEl
+  />
+  @if (showNextBtn()) {
+  <button type="button" class="cursor-pointer" (click)="nextItem()">
+    next
+  </button>
+  }
+</div>

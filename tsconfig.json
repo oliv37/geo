@@ -27,6 +27,9 @@
       "@datas/*": [
         "./src/app/datas/*"
       ],
+      "@utils/*": [
+        "./src/app/utils/*"
+      ],
     }
   },
   "angularCompilerOptions": {

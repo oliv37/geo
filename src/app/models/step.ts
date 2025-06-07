@@ -1,6 +1,6 @@
-import { Item } from '@models/data';
+import type { Data } from '@models/data';
 
-export interface Step<T extends Item> {
+export interface Step<T extends Data> {
   items: readonly T[];
   index: number;
   field: keyof T;
