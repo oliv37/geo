@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import type { Workflow } from '@models/workflow';
 import { findRandoms } from '@utils/array';

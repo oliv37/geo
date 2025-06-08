@@ -5,6 +5,6 @@
   --font-inter: "Inter", "sans-serif"; 
 }
 
-path.selected {
+path.selected, g.selected {
   @apply fill-amber-600;
 }

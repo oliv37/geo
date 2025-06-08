@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 
 @Component({

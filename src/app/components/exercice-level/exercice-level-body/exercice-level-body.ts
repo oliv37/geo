@@ -7,7 +7,7 @@ import {
   model,
   viewChild,
 } from '@angular/core';
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import { ArrowLeftCircleIcon } from '@components/icon/arrow-left-circle-icon /arrow-left-circle-icon';
 import { ArrowRightCircleIcon } from '@components/icon/arrow-right-circle-icon/arrow-right-circle-icon';

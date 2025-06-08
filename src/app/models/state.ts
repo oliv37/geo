@@ -1,4 +1,4 @@
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 
 export interface State<T extends Data> {
   data: readonly T[];

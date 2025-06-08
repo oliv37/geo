@@ -1,4 +1,4 @@
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 
 export interface Step<T extends Data> {
   items: readonly T[];

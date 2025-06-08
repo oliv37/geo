@@ -1,4 +1,4 @@
-import type { UsaState } from '@models/usa-state';
+import type { UsaState } from '@models/data/usa-state';
 
 export const usaStateData: UsaState[] = [
   { id: 'AK', state: 'Alaska', capital: 'Juneau' },

@@ -8,7 +8,7 @@ import {
   Type,
   viewChild,
 } from '@angular/core';
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { Level } from '@models/level';
 import { Map } from '@components/map/map';
 import { ExerciceLevel1 } from '@components/exercice-level/exercice-level-1/exercice-level-1';

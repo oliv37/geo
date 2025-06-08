@@ -1,4 +1,4 @@
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 
 export interface WorkflowStep<T extends Data> {

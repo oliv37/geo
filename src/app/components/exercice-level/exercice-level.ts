@@ -6,7 +6,7 @@ import {
   linkedSignal,
   output,
 } from '@angular/core';
-import type { Data } from '@models/data';
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import type { Workflow, WorkflowStep } from '@models/workflow';
 
@@ -77,11 +77,11 @@ export abstract class ExerciceLevel<T extends Data> {
 
   selectItemOnMap(id: string | number) {
     this.mapContainerEl()
-      ?.querySelectorAll('path.selected')
+      ?.querySelectorAll('path.selected, g.selected')
       .forEach((path) => path.classList.remove('selected'));
 
     this.mapContainerEl()
-      ?.querySelector(`path[data-id="${id}"]`)
+      ?.querySelector(`path[id="${id}"], g[id="${id}"]`)
       ?.classList.add('selected');
   }
 }
