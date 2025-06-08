@@ -9,10 +9,13 @@ import {
 } from '@angular/core';
 import type { Data } from '@models/data';
 import type { State } from '@models/state';
+import { ArrowLeftCircleIcon } from '@components/icon/arrow-left-circle-icon /arrow-left-circle-icon';
+import { ArrowRightCircleIcon } from '@components/icon/arrow-right-circle-icon/arrow-right-circle-icon';
 
 @Component({
   selector: 'app-exercice-level-body',
   templateUrl: './exercice-level-body.html',
+  imports: [ArrowLeftCircleIcon, ArrowRightCircleIcon],
 })
 export class ExerciceLevelBody<T extends Data> {
   showPrevBtn = input(false);

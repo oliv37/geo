@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center gap-6">
   @if (showPrevBtn()) {
   <button type="button" class="cursor-pointer" (click)="prevItem()">
-    prev
+    <app-arrow-left-circle-icon />
   </button>
   }
   <input
@@ -14,7 +14,7 @@
   />
   @if (showNextBtn()) {
   <button type="button" class="cursor-pointer" (click)="nextItem()">
-    next
+    <app-arrow-right-circle-icon />
   </button>
   }
 </div>
