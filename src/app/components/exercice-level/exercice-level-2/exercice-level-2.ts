@@ -18,7 +18,7 @@ import { ExerciceLevelBody } from '@components/exercice-level/exercice-level-bod
   imports: [ExerciceLevelHeader, ExerciceLevelBody],
 })
 export class ExerciceLevel2<T extends Data> extends ExerciceLevel<T> {
-  private readonly nbItemsToAnswer = 4;
+  private readonly nbItemsToAnswer = 3;
 
   override workflow: Workflow<T> = [
     NEXT_FIELD_STATE,
