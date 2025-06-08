@@ -16,7 +16,7 @@ export abstract class ExerciceLevel<T extends Data> {
   fields = input.required<readonly (keyof T)[]>();
   mapContainerEl = input<HTMLDivElement>();
 
-  onProgressPercentChange = output<number>();
+  progressPercentChange = output<number>();
 
   abstract workflow: Workflow<T>;
 
@@ -67,7 +67,7 @@ export abstract class ExerciceLevel<T extends Data> {
 
   progressPercentChangeEffect = effect(() => {
     const progressPercent = this.progressPercent();
-    this.onProgressPercentChange.emit(progressPercent);
+    this.progressPercentChange.emit(progressPercent);
   });
 
   selectItemOnMapEffect = effect(() => {

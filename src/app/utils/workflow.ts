@@ -2,6 +2,8 @@ import type { State } from '@models/state';
 import type { WorkflowStep } from '@models/workflow';
 import { shuffle } from '@utils/array';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 const isNotLastField = (state: State<any>) =>
   state.indexField < state.fields.length - 1;
 
