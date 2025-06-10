@@ -4,11 +4,12 @@
     [style.width]="progressPercent() + '%'"
   ></div>
   <div id="map-container" class="flex-1 relative" #mapContainerRef>
-    <ng-container *ngComponentOutlet="Map(); inputs: mapInputs;"></ng-container>
+    <ng-container *ngComponentOutlet="Map()"></ng-container>
   </div>
-  <app-exercice-level-btn-bar [(level)]="level" />
-  <div class="min-h-36 flex flex-col gap-4 justify-around p-6">
-    @if(isClientSide) { @if (level() === 1) {
+  <div class="min-h-48 flex flex-col gap-4 justify-around py-6">
+    @if(isClientSide) {
+    <app-exercice-level-btn-bar [(level)]="level" />
+    @if (level() === 1) {
     <app-exercice-level-1
       [fields]="fields()"
       [data]="data()"

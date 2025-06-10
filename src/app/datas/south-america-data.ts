@@ -1,6 +1,6 @@
-import type { SouthAmerica } from '@models/data/south-america';
+import type { Country } from '@models/data/country';
 
-export const southAmericaData: SouthAmerica[] = [
+export const southAmericaData: Country[] = [
   { id: 'Argentina', country: 'Argentina', capital: 'Buenos Aires' },
   { id: 'Bolivia', country: 'Bolivia', capital: 'Sucre' },
   { id: 'Brazil', country: 'Brazil', capital: 'Brasilia' },

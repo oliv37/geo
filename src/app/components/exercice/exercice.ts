@@ -14,7 +14,7 @@ import { Map } from '@components/map/map';
 import { ExerciceLevel1 } from '@components/exercice-level/exercice-level-1/exercice-level-1';
 import { ExerciceLevel2 } from '@components/exercice-level/exercice-level-2/exercice-level-2';
 import { ExerciceLevel3 } from '@components/exercice-level/exercice-level-3/exercice-level-3';
-import { ExerciceLevelBtnBar } from '../exercice-level/exercice-level-btn-bar/exercice-level-btn-bar';
+import { ExerciceLevelBtnBar } from '@components/exercice-level/exercice-level-btn-bar/exercice-level-btn-bar';
 
 @Component({
   selector: 'app-exercice',
@@ -33,10 +33,6 @@ export class Exercice<T extends Data> {
   fields = input.required<readonly (keyof T)[]>();
 
   readonly isClientSide = typeof window !== 'undefined';
-
-  readonly mapInputs = {
-    className: 'absolute top-0 left-0 w-full h-full stroke-gray-800 fill-white',
-  };
 
   level = signal<Level>(1);
   progressPercent = signal<number>(0);
