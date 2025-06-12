@@ -31,7 +31,7 @@ export const africaData: Country[] = [
   { id: 'LY', country: 'Libye', capital: 'Tripoli' },
   { id: 'LS', country: 'Lesotho', capital: 'Maseru' },
   { id: 'MA', country: 'Maroc', capital: 'Rabat' },
-  { id: 'MG', country: 'Madagascar', capital: 'Antananarivo' },
+  { id: 'MG', country: 'Madagascar', capital: 'Tananarive' },
   { id: 'ML', country: 'Mali', capital: 'Bamako' },
   { id: 'MZ', country: 'Mozambique', capital: 'Maputo' },
   { id: 'MR', country: 'Mauritanie', capital: 'Nouakchott' },

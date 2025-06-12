@@ -1,6 +1,6 @@
-<div class="flex justify-center items-center gap-8">
+<div class="flex justify-center items-center gap-6">
   @for (lvl of levels; track lvl) {
-  <button type="button" class="cursor-pointer" (click)="level.set(lvl)">
+  <button type="button" class="cursor-pointer p-1" (click)="level.set(lvl)">
     <ng-container
       *ngComponentOutlet="level() === lvl ? levelFillIcons[lvl] : levelIcons[lvl]; 
                           inputs: iconInputs"

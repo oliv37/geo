@@ -1,9 +1,11 @@
 <div class="flex justify-center items-center gap-6">
-  @if (showPrevBtn()) {
-  <button type="button" class="cursor-pointer" (click)="prevItem()">
-    <app-arrow-left-circle-icon />
-  </button>
-  }
+  <div class="flex-1 flex justify-end gap-3">
+    @if (showPrevBtn()) {
+    <button type="button" class="cursor-pointer" (click)="prevItem()">
+      <app-arrow-left-circle-icon />
+    </button>
+    }
+  </div>
   <input
     type="text"
     [class]="'py-1 border-b-2 border-black outline-none ' +
@@ -12,9 +14,15 @@
     (input)="updateText($any($event.target).value)"
     #inputEl
   />
-  @if (showNextBtn()) {
-  <button type="button" class="cursor-pointer" (click)="nextItem()">
-    <app-arrow-right-circle-icon />
-  </button>
-  }
+  <div class="flex-1 flex justify-start gap-3">
+    @if (showNextBtn()) {
+    <button type="button" class="cursor-pointer" (click)="nextItem()">
+      <app-arrow-right-circle-icon />
+    </button>
+    } @if (showHelpBtn()) {
+    <button type="button" class="cursor-pointer" (click)="help()">
+      <app-question-circle-icon />
+    </button>
+    }
+  </div>
 </div>

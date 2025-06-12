@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import type { Workflow } from '@models/workflow';
@@ -41,4 +41,19 @@ export class ExerciceLevel2<T extends Data> extends ExerciceLevel<T> {
       text: '',
     };
   }
+
+  override progressPercent = computed<number>(() => {
+    const state = this.state();
+
+    const indexItem = state.indexItem;
+    const showHint = state.showHint;
+    const nbItems = state.items.length;
+
+    const idx = indexItem + 1 + (!showHint ? nbItems : 0);
+    const total = nbItems * 2;
+
+    return (idx / total) * 100;
+  });
+
+  override readonly showHelpBtn = true;
 }

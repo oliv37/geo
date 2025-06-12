@@ -34,4 +34,6 @@ export class ExerciceLevel3<T extends Data> extends ExerciceLevel<T> {
       text: '',
     };
   }
+
+  override readonly showHelpBtn = true;
 }

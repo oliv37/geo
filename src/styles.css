@@ -3,8 +3,10 @@
 
 @theme {  
   --font-inter: "Inter", "sans-serif"; 
+
+  --color-selected: var(--color-green-600);
 }
 
 path.selected, g.selected {
-  @apply fill-amber-600;
+  @apply fill-selected;
 }

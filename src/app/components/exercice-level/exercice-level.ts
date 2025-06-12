@@ -29,6 +29,7 @@ export abstract class ExerciceLevel<T extends Data> {
 
   readonly showPrevBtn: boolean = false;
   readonly showNextBtn: boolean = false;
+  readonly showHelpBtn: boolean = false;
 
   state = linkedSignal<State<T>>(() => this.createState());
 
@@ -61,8 +62,9 @@ export abstract class ExerciceLevel<T extends Data> {
 
   progressPercent = computed<number>(() => {
     const state = this.state();
+    const indexItem = state.indexItem;
     const nbItems = state.items.length;
-    return nbItems ? ((state.indexItem + 1) / nbItems) * 100 : 0;
+    return nbItems ? ((indexItem + 1) / nbItems) * 100 : 0;
   });
 
   progressPercentChangeEffect = effect(() => {
