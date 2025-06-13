@@ -1,4 +1,5 @@
 import { Component, computed } from '@angular/core';
+import { NgComponentOutlet } from '@angular/common';
 import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import type { Workflow } from '@models/workflow';
@@ -8,14 +9,24 @@ import {
   NEXT_FIELD_STATE,
   NEXT_ITEM_STATE,
 } from '@utils/workflow';
-import { ExerciceLevel } from '@components/exercice-level/exercice-level';
-import { ExerciceLevelHeader } from '@components/exercice-level/exercice-level-header/exercice-level-header';
-import { ExerciceLevelBody } from '@components/exercice-level/exercice-level-body/exercice-level-body';
+import { ExerciceLevel } from '@components/exercice/exercice-level';
+import { ExerciceInfo } from '@components/exercice/exercice-info/exercice-info';
+import { ExerciceInput } from '@components/exercice/exercice-input/exercice-input';
+import { ExerciceLevelPicker } from '@components/exercice/exercice-level-picker/exercice-level-picker';
+import { ExerciceLayout } from '@components/exercice/exercice-layout/exercice-layout';
+import { ExerciceProgressBar } from '@components/exercice/exercice-progress-bar/exercice-progress-bar';
 
 @Component({
   selector: 'app-exercice-level-2',
-  templateUrl: '../exercice-level.html',
-  imports: [ExerciceLevelHeader, ExerciceLevelBody],
+  templateUrl: './exercice-level-2.html',
+  imports: [
+    NgComponentOutlet,
+    ExerciceLevelPicker,
+    ExerciceLayout,
+    ExerciceProgressBar,
+    ExerciceInfo,
+    ExerciceInput,
+  ],
 })
 export class ExerciceLevel2<T extends Data> extends ExerciceLevel<T> {
   private readonly nbItemsToAnswer = 3;
@@ -54,6 +65,4 @@ export class ExerciceLevel2<T extends Data> extends ExerciceLevel<T> {
 
     return (idx / total) * 100;
   });
-
-  override readonly showHelpBtn = true;
 }

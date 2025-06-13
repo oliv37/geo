@@ -4,14 +4,25 @@ import type { State } from '@models/state';
 import type { Workflow } from '@models/workflow';
 import { shuffle } from '@utils/array';
 import { NEXT_FIELD_STATE, NEXT_ITEM_STATE } from '@utils/workflow';
-import { ExerciceLevel } from '@components/exercice-level/exercice-level';
-import { ExerciceLevelHeader } from '@components/exercice-level/exercice-level-header/exercice-level-header';
-import { ExerciceLevelBody } from '@components/exercice-level/exercice-level-body/exercice-level-body';
+import { ExerciceLevel } from '@components/exercice/exercice-level';
+import { NgComponentOutlet } from '@angular/common';
+import { ExerciceLevelPicker } from '@components/exercice/exercice-level-picker/exercice-level-picker';
+import { ExerciceLayout } from '@components/exercice/exercice-layout/exercice-layout';
+import { ExerciceProgressBar } from '@components/exercice/exercice-progress-bar/exercice-progress-bar';
+import { ExerciceInfo } from '@components/exercice/exercice-info/exercice-info';
+import { ExerciceInput } from '@components/exercice/exercice-input/exercice-input';
 
 @Component({
   selector: 'app-exercice-level-3',
-  templateUrl: '../exercice-level.html',
-  imports: [ExerciceLevelHeader, ExerciceLevelBody],
+  templateUrl: './exercice-level-3.html',
+  imports: [
+    NgComponentOutlet,
+    ExerciceLevelPicker,
+    ExerciceLayout,
+    ExerciceProgressBar,
+    ExerciceInfo,
+    ExerciceInput,
+  ],
 })
 export class ExerciceLevel3<T extends Data> extends ExerciceLevel<T> {
   override workflow: Workflow<T> = [
@@ -34,6 +45,4 @@ export class ExerciceLevel3<T extends Data> extends ExerciceLevel<T> {
       text: '',
     };
   }
-
-  override readonly showHelpBtn = true;
 }

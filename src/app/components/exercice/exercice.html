@@ -1,35 +1,22 @@
-<main class="h-screen flex flex-col min-h-[28rem]">
-  <div
-    class="h-1.5 bg-selected transition-all"
-    [style.width]="progressPercent() + '%'"
-  ></div>
-  <div id="map-container" class="flex-1 relative" #mapContainerRef>
-    <ng-container *ngComponentOutlet="Map()"></ng-container>
-  </div>
-  <div class="min-h-48 flex flex-col gap-4 justify-around py-6">
-    @if(isClientSide) {
-    <app-exercice-level-btn-bar [(level)]="level" />
-    @if (level() === 1) {
-    <app-exercice-level-1
-      [fields]="fields()"
-      [data]="data()"
-      [mapContainerEl]="mapContainerEl()"
-      (progressPercentChange)="progressPercent.set($event)"
-    />
-    } @if (level() === 2) {
-    <app-exercice-level-2
-      [fields]="fields()"
-      [data]="data()"
-      [mapContainerEl]="mapContainerEl()"
-      (progressPercentChange)="progressPercent.set($event)"
-    />
-    } @if (level() === 3) {
-    <app-exercice-level-3
-      [fields]="fields()"
-      [data]="data()"
-      [mapContainerEl]="mapContainerEl()"
-      (progressPercentChange)="progressPercent.set($event)"
-    />
-    } }
-  </div>
-</main>
+@if (level() === 1) {
+<app-exercice-level-1
+  [fields]="fields()"
+  [data]="data()"
+  [Map]="Map()"
+  (levelChange)="level.set($event)"
+/>
+} @if (level() === 2) {
+<app-exercice-level-2
+  [fields]="fields()"
+  [data]="data()"
+  [Map]="Map()"
+  (levelChange)="level.set($event)"
+/>
+} @if (level() === 3) {
+<app-exercice-level-3
+  [fields]="fields()"
+  [data]="data()"
+  [Map]="Map()"
+  (levelChange)="level.set($event)"
+/>
+}

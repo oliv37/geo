@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   Component,
   computed,
   DOCUMENT,
@@ -16,14 +17,14 @@ import { ArrowRightCircleIcon } from '@components/icon/arrow-right-circle-icon/a
 import { QuestionCircleIcon } from '@components/icon/question-circle-icon/question-circle-icon';
 
 @Component({
-  selector: 'app-exercice-level-body',
-  templateUrl: './exercice-level-body.html',
+  selector: 'app-exercice-input',
+  templateUrl: './exercice-input.html',
   imports: [ArrowLeftCircleIcon, ArrowRightCircleIcon, QuestionCircleIcon],
 })
-export class ExerciceLevelBody<T extends Data> {
-  showPrevBtn = input(false);
-  showNextBtn = input(false);
-  showHelpBtn = input(false);
+export class ExerciceInput<T extends Data> {
+  showPrevBtn = input(false, { transform: booleanAttribute });
+  showNextBtn = input(false, { transform: booleanAttribute });
+  showHelpBtn = input(false, { transform: booleanAttribute });
   state = model.required<State<T>>();
 
   document = inject(DOCUMENT);

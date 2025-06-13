@@ -3,10 +3,10 @@ import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 
 @Component({
-  selector: 'app-exercice-level-header',
-  templateUrl: './exercice-level-header.html',
+  selector: 'app-exercice-info',
+  templateUrl: './exercice-info.html',
 })
-export class ExerciceLevelHeader<T extends Data> {
+export class ExerciceInfo<T extends Data> {
   state = input.required<State<T>>();
 
   currentItem = computed<T>(() => {

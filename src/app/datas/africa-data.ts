@@ -46,7 +46,7 @@ export const africaData: Country[] = [
   { id: 'SN', country: 'Sénégal', capital: 'Dakar' },
   { id: 'SL', country: 'Sierra Leone', capital: 'Freetown' },
   { id: 'SZ', country: 'Eswatini', capital: 'Mbabane' },
-  { id: 'TD', country: 'Tchad', capital: 'Ndjamena' },
+  { id: 'TD', country: 'Tchad', capital: "N'Djamena" },
   { id: 'TG', country: 'Togo', capital: 'Lomé' },
   { id: 'TN', country: 'Tunisie', capital: 'Tunis' },
   { id: 'TZ', country: 'Tanzanie', capital: 'Dodoma' },

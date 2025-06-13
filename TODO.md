@@ -1,9 +1,10 @@
 - favicon
-- [Map] Départements France Métropolitaine (96)
+- [Map] Pays Amérique du Nord et Centrale (23)
 - [Map] Pays Union Européenne (27)
 - [Map] Pays Europe (50)
 - [Map] Pays Océanie (16)
 - [Map] Pays Asie (48)
+- [Map] Départements France Métropolitaine (96)
 - [Map] Régions France (13)
 - [Map] Régions Espagne (17)
 - [Map] Régions Italie (20)

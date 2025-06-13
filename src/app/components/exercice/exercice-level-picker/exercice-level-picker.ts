@@ -10,11 +10,11 @@ import { ThreeCircleIcon } from '@components/icon/3-circle-icon/3-circle-icon';
 import { ThreeCircleFillIcon } from '@components/icon/3-circle-fill-icon/3-circle-fill-icon';
 
 @Component({
-  selector: 'app-exercice-level-btn-bar',
-  templateUrl: './exercice-level-btn-bar.html',
+  selector: 'app-exercice-level-picker',
+  templateUrl: './exercice-level-picker.html',
   imports: [NgComponentOutlet],
 })
-export class ExerciceLevelBtnBar {
+export class ExerciceLevelPicker {
   level = model.required<Level>();
 
   readonly levels = LEVELS;

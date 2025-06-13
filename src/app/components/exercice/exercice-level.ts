@@ -1,22 +1,33 @@
 import {
+  AfterViewInit,
   computed,
   Directive,
   effect,
+  ElementRef,
   input,
   linkedSignal,
   output,
+  Type,
+  viewChild,
 } from '@angular/core';
+import { Map } from '@components/map/map';
 import type { Data } from '@models/data/data';
+import { Level } from '@models/level';
 import type { State } from '@models/state';
 import type { Workflow, WorkflowStep } from '@models/workflow';
 
 @Directive()
-export abstract class ExerciceLevel<T extends Data> {
+export abstract class ExerciceLevel<T extends Data> implements AfterViewInit {
   data = input.required<readonly T[]>();
   fields = input.required<readonly (keyof T)[]>();
-  mapContainerEl = input<HTMLDivElement>();
+  Map = input.required<Type<Map>>();
 
-  progressPercentChange = output<number>();
+  levelChange = output<Level>();
+
+  mapContainerRef = viewChild<ElementRef<HTMLDivElement>>('mapContainerRef');
+  mapContainerEl = computed<HTMLDivElement | undefined>(
+    () => this.mapContainerRef()?.nativeElement
+  );
 
   abstract workflow: Workflow<T>;
 
@@ -27,9 +38,7 @@ export abstract class ExerciceLevel<T extends Data> {
     nextState: () => this.createState(),
   };
 
-  readonly showPrevBtn: boolean = false;
-  readonly showNextBtn: boolean = false;
-  readonly showHelpBtn: boolean = false;
+  readonly isClientSide = typeof window !== 'undefined';
 
   state = linkedSignal<State<T>>(() => this.createState());
 
@@ -67,21 +76,24 @@ export abstract class ExerciceLevel<T extends Data> {
     return nbItems ? ((indexItem + 1) / nbItems) * 100 : 0;
   });
 
-  progressPercentChangeEffect = effect(() => {
-    const progressPercent = this.progressPercent();
-    this.progressPercentChange.emit(progressPercent);
+  selectCurrentItemOnMapEffect = effect(() => {
+    this.selectCurrentItemOnMap();
   });
 
-  selectItemOnMapEffect = effect(() => {
-    const currentItem = this.currentItem();
-    this.selectItemOnMap(currentItem.id);
-  });
+  ngAfterViewInit() {
+    this.selectCurrentItemOnMap();
+  }
 
-  selectItemOnMap(id: string | number) {
+  selectCurrentItemOnMap() {
+    if (!this.isClientSide) {
+      return;
+    }
+
     this.mapContainerEl()
       ?.querySelectorAll('path.selected, g.selected')
       .forEach((path) => path.classList.remove('selected'));
 
+    const id: string | number = this.currentItem().id;
     this.mapContainerEl()
       ?.querySelector(`path[id="${id}"], g[id="${id}"]`)
       ?.classList.add('selected');
