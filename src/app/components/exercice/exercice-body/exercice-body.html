@@ -1,0 +1,36 @@
+<div class="flex justify-center items-center gap-6">
+  <div class="flex-1 flex justify-end gap-8">
+    <button type="button" class="cursor-pointer" (click)="resetState.emit()">
+      <app-arrow-clockwise-icon />
+    </button>
+    @if (showPrevBtn()) {
+    <button type="button" class="cursor-pointer" (click)="prevItem()">
+      <app-arrow-left-icon />
+    </button>
+    }
+  </div>
+  <input
+    type="text"
+    [class]="'py-1 border-b-2 border-gray-800 outline-none ' +
+      'w-full max-w-[34rem] text-center text-5xl font-pangolin font-bold'"
+    [value]="text()"
+    (input)="updateText($any($event.target).value)"
+    #inputEl
+  />
+  <div class="flex-1 flex justify-start gap-8">
+    @if (showNextBtn()) {
+    <button type="button" class="cursor-pointer" (click)="nextItem()">
+      <app-arrow-right-icon />
+    </button>
+    } @if (showHelpBtn()) {
+    <button type="button" class="cursor-pointer" (click)="help()">
+      <app-question-lg-icon />
+    </button>
+    }
+    <button type="button" class="cursor-pointer" (click)="nextLevel()">
+      <span
+        class="block w-10 h-10 rounded-full bg-(--color-exercice) animate-fade-in"
+      ></span>
+    </button>
+  </div>
+</div>

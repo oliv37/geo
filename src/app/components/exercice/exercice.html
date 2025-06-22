@@ -3,20 +3,20 @@
   [fields]="fields()"
   [data]="data()"
   [Map]="Map()"
-  (levelChange)="level.set($event)"
+  [(level)]="level"
 />
 } @if (level() === 2) {
 <app-exercice-level-2
   [fields]="fields()"
   [data]="data()"
   [Map]="Map()"
-  (levelChange)="level.set($event)"
+  [(level)]="level"
 />
 } @if (level() === 3) {
 <app-exercice-level-3
   [fields]="fields()"
   [data]="data()"
   [Map]="Map()"
-  (levelChange)="level.set($event)"
+  [(level)]="level"
 />
 }

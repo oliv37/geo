@@ -6,5 +6,7 @@ import { Component, input } from '@angular/core';
 })
 export class ExerciceProgressBar {
   progressPercent = input.required<number>();
-  className = input<string>('h-1.5 bg-selected transition-all');
+  className = input<string>(
+    'h-1 bg-(--color-exercice) transition-all duration-500'
+  );
 }
