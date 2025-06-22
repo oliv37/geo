@@ -2,9 +2,8 @@
   @for (field of state().fields; track $index) {
   <span
     class="font-montserrat text-4xl"
-    [class.text-right]="$index === 0"
-    [class.text-left]="$index === $count - 1"
     [class.font-bold]="$index === state().indexField"
+    [class.order-first]="field === 'id'"
   >
     @if (state().showHint || $index < state().indexField ) { {{
     currentItem()[field] }} } @else if (state().indexField === $index) { {{

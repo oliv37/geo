@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'africa',
+    redirectTo: 'fra-dpt',
   },
   {
     path: 'usa-state',
@@ -24,5 +24,10 @@ export const routes: Routes = [
     path: 'africa',
     loadComponent: () =>
       import('./pages/africa-page/africa-page').then((m) => m.AfricaPage),
+  },
+  {
+    path: 'fra-dpt',
+    loadComponent: () =>
+      import('./pages/fra-dpt-page/fra-dpt-page').then((m) => m.FraDptPage),
   },
 ];

@@ -10,5 +10,5 @@ import { UsaStateMap } from '@components/map/usa-state-map/usa-state-map';
 export class UsaStatePage {
   UsaStateMap = UsaStateMap;
   usaStateData = usaStateData;
-  fields = ['state', 'capital'] as const;
+  fields = ['state', 'city'] as const;
 }

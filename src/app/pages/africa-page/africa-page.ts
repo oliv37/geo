@@ -10,5 +10,5 @@ import { AfricaMap } from '@components/map/africa-map/africa-map';
 export class AfricaPage {
   AfricaMap = AfricaMap;
   africaData = africaData;
-  fields = ['country', 'capital'] as const;
+  fields = ['country', 'city'] as const;
 }

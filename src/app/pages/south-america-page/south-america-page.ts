@@ -10,5 +10,5 @@ import { SouthAmericaMap } from '@components/map/south-america-map/south-america
 export class SouthAmericaPage {
   SouthAmericaMap = SouthAmericaMap;
   southAmericaData = southAmericaData;
-  fields = ['country', 'capital'] as const;
+  fields = ['country', 'city'] as const;
 }
