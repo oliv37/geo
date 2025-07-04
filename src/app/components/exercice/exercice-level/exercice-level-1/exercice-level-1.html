@@ -1,18 +1,12 @@
 <app-exercice-page-container>
-  <app-exercice-progress-bar [progressPercent]="progressPercent()" />
+  <app-exercice-progress-bar />
   <app-exercice-map-container #mapContainerRef>
     <ng-container *ngComponentOutlet="Map()"></ng-container>
   </app-exercice-map-container>
   <app-exercice-container>
     @if (isClientSide) {
-    <app-exercice-head [state]="state()" />
-    <app-exercice-body
-      [(state)]="state"
-      [(level)]="level"
-      showPrevBtn
-      showNextBtn
-      (resetState)="resetState()"
-    />
+    <app-exercice-head />
+    <app-exercice-body showPrevBtn showNextBtn />
     }
   </app-exercice-container>
 </app-exercice-page-container>

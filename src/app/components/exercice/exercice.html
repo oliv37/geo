@@ -1,22 +1,7 @@
-@if (level() === 1) {
-<app-exercice-level-1
-  [fields]="fields()"
-  [data]="data()"
-  [Map]="Map()"
-  [(level)]="level"
-/>
-} @if (level() === 2) {
-<app-exercice-level-2
-  [fields]="fields()"
-  [data]="data()"
-  [Map]="Map()"
-  [(level)]="level"
-/>
-} @if (level() === 3) {
-<app-exercice-level-3
-  [fields]="fields()"
-  [data]="data()"
-  [Map]="Map()"
-  [(level)]="level"
-/>
+@if (exerciceLevel.level() === 1) {
+<app-exercice-level-1 [fields]="fields()" [data]="data()" [Map]="Map()" />
+} @if (exerciceLevel.level() === 2) {
+<app-exercice-level-2 [fields]="fields()" [data]="data()" [Map]="Map()" />
+} @if (exerciceLevel.level() === 3) {
+<app-exercice-level-3 [fields]="fields()" [data]="data()" [Map]="Map()" />
 }

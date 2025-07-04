@@ -1,13 +1,13 @@
 <div class="flex justify-center items-center gap-8 h-8">
-  @for (field of state().fields; track $index) {
+  @for (field of exerciceState.fields(); track $index) {
   <span
     class="font-montserrat text-4xl"
-    [class.font-bold]="$index === state().indexField"
+    [class.font-bold]="$index === exerciceState.indexField()"
     [class.order-first]="field === 'id'"
   >
-    @if (state().showHint || $index < state().indexField ) { {{
-    currentItem()[field] }} } @else if (state().indexField === $index) { {{
-    textValid() }} }
+    @if (exerciceState.showHint() || $index < exerciceState.indexField() ) { {{
+    exerciceState.currentItem()[field] }} } @else if (exerciceState.indexField()
+    === $index) { {{ exerciceState.textValid() }} }
   </span>
   }
 </div>

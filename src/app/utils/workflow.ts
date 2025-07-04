@@ -1,3 +1,4 @@
+import type { Data } from '@models/data/data';
 import type { State } from '@models/state';
 import type { WorkflowStep } from '@models/workflow';
 import { shuffle } from '@utils/array';
@@ -42,3 +43,10 @@ export const HIDE_HINT_STATE: WorkflowStep<any> = {
     text: '',
   }),
 };
+
+export const RESET_STATE = <T extends Data>(
+  createState: () => State<T>
+): WorkflowStep<T> => ({
+  test: () => true,
+  nextState: () => createState(),
+});
