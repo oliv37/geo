@@ -1,3 +1,4 @@
+- rework file naming / folder structure
 - favicon
 - [Map] Pays Amérique du Nord et Centrale (23)
 - [Map] Pays Union Européenne (27)
