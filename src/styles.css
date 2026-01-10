@@ -24,12 +24,28 @@
   }
 }
 
+@layer base {
+  button {
+    cursor: pointer;
+  }
+
+  path.selected, g.selected {
+    fill: var(--color-blue-600);
+  }
+}
+
+@layer components {
+  .map-container svg {
+    @apply absolute top-0 left-0 w-full h-full fill-white stroke-black;
+  }
+
+  .map-container.clickable path[id], .map-container.clickable g[id] {
+    @apply cursor-pointer;
+  }
+}
+
 :root {
   --color-exercice-level-1: var(--color-yellow-500);
   --color-exercice-level-2: var(--color-amber-600);
   --color-exercice-level-3: var(--color-red-700);
-}
-
-path.selected, g.selected {
-  fill: var(--color-exercice);
 }

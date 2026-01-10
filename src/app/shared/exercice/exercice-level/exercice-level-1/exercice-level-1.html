@@ -1,0 +1,12 @@
+<geo-exercice-page-container>
+  <geo-exercice-progress-bar />
+  <geo-exercice-map-container #mapContainerRef>
+    <ng-container *ngComponentOutlet="Map()"></ng-container>
+  </geo-exercice-map-container>
+  <geo-exercice-container>
+    @if (isClientSide) {
+    <geo-exercice-head />
+    <geo-exercice-body showPrevBtn showNextBtn />
+    }
+  </geo-exercice-container>
+</geo-exercice-page-container>

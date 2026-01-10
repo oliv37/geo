@@ -1,5 +1,11 @@
-- rework file naming / folder structure
+- add shared/write-view
+- add shared/read-write-view
+- remove shared/map
+- remove shared/exercice
+- add home page
+- check eslint config
 - favicon
+
 - [Map] Pays Amérique du Nord et Centrale (23)
 - [Map] Pays Union Européenne (27)
 - [Map] Pays Europe (50)
