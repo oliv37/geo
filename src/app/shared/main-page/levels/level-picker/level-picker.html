@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center gap-4">
+  @for(levelValue of levels; track levelValue) {
+  <button
+    type="button"
+    (click)="level.set(levelValue)"
+    [class.text-blue-700]="levelValue <= level()"
+    [class.text-white]="levelValue > level()"
+  >
+    <geo-star-fill-icon
+      iconClass="w-7 h-7 fill-current stroke-black"
+    ></geo-star-fill-icon>
+  </button>
+  }
+</div>

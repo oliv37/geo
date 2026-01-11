@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FranceDptMap } from '../france-dpt-map/france-dpt-map';
-import { franceDptData } from '../france-dpt-data';
-import { ReadView } from '@shared/read-view/read-view';
+import { franceDptData, franceDptFields } from '../france-dpt-data';
+import { MainPage } from '@shared/main-page/main-page';
 
 @Component({
-  imports: [ReadView],
+  imports: [MainPage],
   templateUrl: './france-dpt-page.html',
 })
 export class FranceDptPage {
   FranceDptMap = FranceDptMap;
   franceDptData = franceDptData;
-  fields = ['department', 'city', 'id'] as const;
+  franceDptFields = franceDptFields;
 }

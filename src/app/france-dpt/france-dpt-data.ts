@@ -98,3 +98,5 @@ export const franceDptData: Department[] = [
   { id: '94', department: 'Val-de-Marne', city: 'Créteil' },
   { id: '95', department: "Val-d'Oise", city: 'Pontoise' },
 ];
+
+export const franceDptFields = ['id', 'department', 'city'] as const;

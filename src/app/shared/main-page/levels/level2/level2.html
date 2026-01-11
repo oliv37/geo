@@ -1,0 +1,40 @@
+<div class="flex flex-col gap-3">
+  <div
+    [class]="
+    'flex flex-wrap justify-center items-center gap-3 ' + 
+    'min-h-10 text-lg sm:text-2xl italic'"
+  >
+    @for (hint of hints(); track $index) {
+    <span
+      class="wrap-anywhere"
+      [class.font-bold]="$index === state().fieldIndex"
+    >
+      {{ hint }}
+    </span>
+    }
+  </div>
+
+  <div class="flex justify-center items-center">
+    <div class="relative">
+      <input
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        [class]="
+        'w-full max-w-sm outline-none ' +
+        'text-xl sm:text-3xl text-center leading-normal '
+      "
+        [value]="state().text"
+        (input)="onInput($any($event.target).value)"
+        #inputEl
+      />
+      <div class="w-full h-1.5 border border-black rounded-lg">
+        <div
+          class="h-full bg-blue-700 transition-all duration-500"
+          [style.width.%]="progressPercent()"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

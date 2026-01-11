@@ -8,7 +8,9 @@ import {
   input,
   linkedSignal,
   OnDestroy,
+  PLATFORM_ID,
   Renderer2,
+  Signal,
   signal,
   Type,
   viewChild,
@@ -18,6 +20,7 @@ import { PlayIcon } from '@shared/icon/play-icon/play-icon';
 import { StopIcon } from '@shared/icon/stop-icon/stop-icon';
 import { CaretRightFillIcon } from '@shared/icon/caret-right-fill-icon/caret-right-fill-icon';
 import { CaretLeftFillIcon } from '@shared/icon/caret-left-fill-icon/caret-left-fill-icon';
+import { isPlatformBrowser } from '@angular/common';
 
 type PlayStopState = 'play' | 'stop';
 
@@ -35,6 +38,7 @@ const TIMEOUT_DURATION_MS = 5000;
   ],
 })
 export class ReadView<T extends Data> implements OnDestroy {
+  readonly #isBrowser = signal(isPlatformBrowser(inject(PLATFORM_ID)));
   readonly #renderer = inject(Renderer2);
   #timeoutId: number | undefined;
   #animation: Animation | undefined;
@@ -51,7 +55,13 @@ export class ReadView<T extends Data> implements OnDestroy {
 
   protected readonly playStopState = signal<PlayStopState>('stop');
 
-  protected readonly item = computed(() => this.data()[this.index()]);
+  protected readonly item: Signal<T | undefined> = computed(() => {
+    const isBrowser = this.#isBrowser();
+    const data = this.data();
+    const index = this.index();
+
+    return isBrowser ? data[index] : undefined;
+  });
 
   protected readonly mapContainerRef =
     viewChild<ElementRef<HTMLDivElement>>('mapContainer');
@@ -62,6 +72,10 @@ export class ReadView<T extends Data> implements OnDestroy {
   readonly selectItemOnMapEffect = effect(() => {
     const mapContainerRef = this.mapContainerRef();
     const item = this.item();
+
+    if (!item) {
+      return;
+    }
 
     mapContainerRef?.nativeElement
       ?.querySelectorAll('path.selected, g.selected')
