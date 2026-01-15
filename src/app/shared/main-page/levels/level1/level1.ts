@@ -1,14 +1,16 @@
-import { isPlatformBrowser } from '@angular/common';
+import { NgComponentOutlet } from '@angular/common';
 import {
+  afterNextRender,
   Component,
+  computed,
   effect,
   ElementRef,
   inject,
   input,
-  model,
   OnDestroy,
-  PLATFORM_ID,
+  Renderer2,
   signal,
+  Type,
   viewChild,
 } from '@angular/core';
 import type { Data } from '@shared/data';
@@ -24,35 +26,57 @@ const TIMEOUT_DURATION_MS = 5000;
 @Component({
   selector: 'geo-level1',
   templateUrl: './level1.html',
-  imports: [CaretRightFillIcon, PlayIcon, StopIcon, CaretLeftFillIcon],
+  imports: [
+    CaretRightFillIcon,
+    PlayIcon,
+    StopIcon,
+    CaretLeftFillIcon,
+    NgComponentOutlet,
+  ],
 })
 export class Level1<T extends Data> implements OnDestroy {
-  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  readonly #renderer = inject(Renderer2);
 
   #timeoutId: number | undefined;
   #animation: Animation | undefined;
 
+  readonly Map = input.required<Type<unknown>>();
   readonly data = input.required<readonly T[]>();
   readonly fields = input.required<readonly (keyof T)[]>();
-  readonly item = model<T>();
 
+  protected readonly item = signal<T | undefined>(undefined);
   protected readonly playStopState = signal<PlayStopState>('stop');
 
   protected readonly playOverlayRef =
     viewChild<ElementRef<HTMLDivElement>>('playOverlay');
 
-  protected togglePlayStopState() {
-    this.playStopState.update((state) => (state === 'play' ? 'stop' : 'play'));
-  }
+  protected readonly mapContainerRef =
+    viewChild<ElementRef<HTMLDivElement>>('mapContainer');
 
-  readonly itemInitEffect = effect(() => {
-    if (!this.#isBrowser) {
-      return;
-    }
-
+  protected readonly itemIndex = computed<number>(() => {
     const data = this.data();
-    const randomItem = data[Math.floor(Math.random() * data.length)];
-    this.item.set(randomItem);
+    const item = this.item();
+
+    return item ? data.findIndex((dataItem) => dataItem.id === item.id) : -1;
+  });
+
+  protected readonly progressPercent = computed<number>(() => {
+    const data = this.data();
+    const itemIndex = this.itemIndex();
+
+    return itemIndex > 0 ? ((itemIndex + 1) / data.length) * 100 : 0;
+  });
+
+  readonly initItemEffect = effect(() => {
+    const data = this.data();
+    this.item.set(data[0]);
+  });
+
+  readonly selectItemOnMapEffect = effect(() => {
+    const mapContainerRef = this.mapContainerRef();
+    const item = this.item();
+
+    this.#selectItemOnMap(mapContainerRef, item);
   });
 
   readonly playStopEffect = effect(() => {
@@ -66,39 +90,57 @@ export class Level1<T extends Data> implements OnDestroy {
     }
   });
 
+  constructor() {
+    afterNextRender(() => {
+      const mapContainerRef = this.mapContainerRef();
+      const item = this.item();
+
+      this.#selectItemOnMap(mapContainerRef, item);
+    });
+  }
+
   ngOnDestroy() {
     this.#cancelTimeoutAndAnimation();
   }
 
+  protected onMapClick(event: MouseEvent) {
+    const target = event.target as HTMLElement | null;
+    const targetId = target?.id;
+    const targetTag = target?.tagName;
+
+    if ((targetTag === 'path' || targetTag === 'g') && targetId) {
+      const item = this.data().find((d) => d.id === targetId);
+
+      if (item) {
+        this.item.set(item);
+      }
+    }
+  }
+
+  protected togglePlayStopState() {
+    this.playStopState.update((state) => (state === 'play' ? 'stop' : 'play'));
+  }
+
   protected previousItem() {
     const data = this.data();
-    const dataLength = data.length;
-    const itemIndex = this.#getItemIndex();
+    const itemIndex = this.itemIndex();
 
     if (itemIndex === -1) {
       return;
     }
 
-    this.item.set(data[(itemIndex - 1 + dataLength) % dataLength]);
+    this.item.set(data[(itemIndex - 1 + data.length) % data.length]);
   }
 
   protected nextItem() {
     const data = this.data();
-    const dataLength = data.length;
-    const itemIndex = this.#getItemIndex();
+    const itemIndex = this.itemIndex();
 
     if (itemIndex === -1) {
       return;
     }
 
-    this.item.set(data[(itemIndex + 1) % dataLength]);
-  }
-
-  #getItemIndex(): number {
-    const data = this.data();
-    const item = this.item();
-
-    return item ? data.findIndex((dataItem) => dataItem.id === item.id) : -1;
+    this.item.set(data[(itemIndex + 1) % data.length]);
   }
 
   #startTimeoutAndAnimation() {
@@ -111,12 +153,24 @@ export class Level1<T extends Data> implements OnDestroy {
       {
         duration: TIMEOUT_DURATION_MS,
         fill: 'forwards',
-      }
+      },
     );
   }
 
   #cancelTimeoutAndAnimation() {
     clearTimeout(this.#timeoutId);
     this.#animation?.cancel();
+  }
+
+  #selectItemOnMap(mapContainerRef?: ElementRef<HTMLDivElement>, item?: T) {
+    mapContainerRef?.nativeElement
+      ?.querySelectorAll('path.selected, g.selected')
+      .forEach((el) => this.#renderer.removeClass(el, 'selected'));
+
+    if (item) {
+      mapContainerRef?.nativeElement
+        ?.querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
+        .forEach((el) => this.#renderer.addClass(el, 'selected'));
+    }
   }
 }

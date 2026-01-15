@@ -1,33 +1,22 @@
-<div class="min-h-dvh flex flex-col p-4 gap-5">
-  <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
-  <div
-    class="flex-1 relative min-h-60 map-container"
-    [class.clickable]="isMapClickable()"
-    tabindex="-1"
-    (click)="onMapClick($event)"
-    #mapContainer
-  >
-    <ng-container *ngComponentOutlet="Map()"></ng-container>
-  </div>
-
+<div class="min-h-dvh h-0 flex flex-col p-4 gap-5">
   <geo-level-picker
     [level]="level()"
     (levelChange)="onLevelChange($event)"
   ></geo-level-picker>
 
-  <div class="min-h-26 flex flex-col justify-center">
-    @if(level() === 1) {
-    <geo-level1
-      [data]="data()"
-      [fields]="fields()"
-      [(item)]="item"
-    ></geo-level1>
-    } @if (level() === 2) {
-    <geo-level2
-      [data]="data()"
-      [fields]="fields()"
-      (itemChange)="item.set($event)"
-    ></geo-level2>
-    }
-  </div>
+  @if(level() === 1) {
+  <geo-level1
+    class="flex-1 flex flex-col gap-3"
+    [Map]="Map()"
+    [data]="data()"
+    [fields]="fields()"
+  ></geo-level1>
+  } @if (level() === 2) {
+  <geo-level2
+    class="flex-1 flex flex-col gap-3"
+    [Map]="Map()"
+    [data]="data()"
+    [fields]="fields()"
+  ></geo-level2>
+  }
 </div>

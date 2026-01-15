@@ -3,6 +3,8 @@ export interface Data {
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
+export type DataField<T extends Data> = keyof T;
+
 export interface Country {
   id: string;
   country: string;

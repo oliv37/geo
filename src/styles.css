@@ -29,6 +29,10 @@
     cursor: pointer;
   }
 
+  path.highlighted, g.highlighted {
+    fill: var(--color-blue-200);
+  }
+
   path.selected, g.selected {
     fill: var(--color-blue-600);
   }
