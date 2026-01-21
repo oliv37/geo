@@ -18,5 +18,12 @@
     [data]="data()"
     [fields]="fields()"
   ></geo-level2>
+  } @if (level() === 3) {
+  <geo-level3
+    class="flex-1 flex flex-col gap-3"
+    [Map]="Map()"
+    [data]="data()"
+    [fields]="fields()"
+  ></geo-level3>
   }
 </div>
