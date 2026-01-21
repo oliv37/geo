@@ -56,3 +56,5 @@ export const africaData: Country[] = [
   { id: 'ZW', country: 'Zimbabwe', city: 'Harare' },
   { id: 'SO', country: 'Somalie', city: 'Mogadiscio' },
 ];
+
+export const africaFields = ['country', 'city'] as const;

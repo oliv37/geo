@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { Exercice } from '@shared/exercice/exercice/exercice';
-import { africaData } from '../africa-data';
+import { africaData, africaFields } from '../africa-data';
 import { AfricaMap } from '../africa-map/africa-map';
+import { MainPage } from '@shared/main-page/main-page';
 
 @Component({
-  imports: [Exercice],
+  imports: [MainPage],
   templateUrl: './africa-page.html',
 })
 export class AfricaPage {
   AfricaMap = AfricaMap;
   africaData = africaData;
-  fields = ['country', 'city'] as const;
+  africaFields = africaFields;
 }

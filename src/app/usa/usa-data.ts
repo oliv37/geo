@@ -52,3 +52,5 @@ export const usaData: State[] = [
   { id: 'WV', state: 'West Virginia', city: 'Charleston' },
   { id: 'WY', state: 'Wyoming', city: 'Cheyenne' },
 ];
+
+export const usaFields = ['state', 'city'] as const;

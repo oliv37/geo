@@ -8,20 +8,6 @@
   --font-inter: "Inter", "sans-serif"; 
   --font-montserrat: "Montserrat", "sans-serif"; 
   --font-pangolin: "Pangolin", cursive;
-  
-  --animate-push: push 700ms ease-out;
-
-  @keyframes push {
-    from {
-      scale: 1;
-    }
-    50% {
-      scale: 0.90;
-    }
-    to {
-      scale: 1;   
-    }
-  }
 }
 
 @layer base {
@@ -46,10 +32,4 @@
   .map-container.clickable path[id], .map-container.clickable g[id] {
     @apply cursor-pointer;
   }
-}
-
-:root {
-  --color-exercice-level-1: var(--color-yellow-500);
-  --color-exercice-level-2: var(--color-amber-600);
-  --color-exercice-level-3: var(--color-red-700);
 }

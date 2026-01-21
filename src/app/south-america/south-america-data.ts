@@ -15,3 +15,5 @@ export const southAmericaData: Country[] = [
   { id: 'Uruguay', country: 'Uruguay', city: 'Montevideo' },
   { id: 'Venezuela', country: 'Venezuela', city: 'Caracas' },
 ];
+
+export const southAmericaFields = ['country', 'city'] as const;

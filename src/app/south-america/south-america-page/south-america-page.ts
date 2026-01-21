@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { Exercice } from '@shared/exercice/exercice/exercice';
-import { southAmericaData } from '../south-america-data';
+import { southAmericaData, southAmericaFields } from '../south-america-data';
 import { SouthAmericaMap } from '../south-america-map/south-america-map';
+import { MainPage } from '@shared/main-page/main-page';
 
 @Component({
-  imports: [Exercice],
+  imports: [MainPage],
   templateUrl: './south-america-page.html',
 })
 export class SouthAmericaPage {
   SouthAmericaMap = SouthAmericaMap;
   southAmericaData = southAmericaData;
-  fields = ['country', 'city'] as const;
+  southAmericaFields = southAmericaFields;
 }

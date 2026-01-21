@@ -16,7 +16,7 @@ export class MainPage<T extends Data> {
   readonly data = input.required<readonly T[]>();
   readonly fields = input.required<readonly (keyof T)[]>();
 
-  protected readonly level = signal<Level>(3);
+  protected readonly level = signal<Level>(1);
 
   protected onLevelChange(level: Level) {
     this.level.set(level);
