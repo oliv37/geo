@@ -39,10 +39,9 @@
     </button>
   </div>
 
-  <div class="w-full max-w-sm h-1.5 border border-black rounded-lg">
-    <div
-      class="h-full bg-blue-700 transition-all duration-500"
-      [style.width.%]="progressPercent()"
-    ></div>
-  </div>
+  <geo-level-progress
+    class="w-full max-w-sm"
+    [current]="itemIndex() + 1"
+    [total]="data().length"
+  />
 </div>

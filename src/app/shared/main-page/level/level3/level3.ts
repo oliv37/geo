@@ -20,11 +20,17 @@ import {
   createLevel3StateWithRandomItems,
   Level3State,
 } from './state/level3-state';
+import { LevelProgress } from '@shared/main-page/level-progress/level-progress';
 
 @Component({
   selector: 'geo-level3',
   templateUrl: './level3.html',
-  imports: [NgComponentOutlet, ArrowClockwiseIcon, PatchQuestionIcon],
+  imports: [
+    NgComponentOutlet,
+    ArrowClockwiseIcon,
+    PatchQuestionIcon,
+    LevelProgress,
+  ],
 })
 export class Level3<T extends Data> {
   readonly #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -48,10 +54,10 @@ export class Level3<T extends Data> {
     return state ? state.item : undefined;
   });
 
-  protected readonly progressPercent = computed<number>(() => {
+  readonly itemsAnswered = computed<T[]>(() => {
     const state = this.state();
 
-    return state ? ((state.itemIndex + 1) / state.items.length) * 100 : 0;
+    return state ? state.items.slice(0, state.itemIndex) : [];
   });
 
   readonly initStateEffect = effect(() => {
@@ -67,9 +73,10 @@ export class Level3<T extends Data> {
 
   readonly selectItemOnMapEffect = effect(() => {
     const mapContainerRef = this.mapContainerRef();
+    const itemsAnswered = this.itemsAnswered();
     const item = this.item();
 
-    this.#selectItemOnMap(mapContainerRef, item);
+    this.#markItemsOnMap(mapContainerRef, itemsAnswered, item);
   });
 
   readonly focusInputEffect = effect(() => {
@@ -84,20 +91,41 @@ export class Level3<T extends Data> {
   constructor() {
     afterNextRender(() => {
       const mapContainerRef = this.mapContainerRef();
+      const itemsAnswered = this.itemsAnswered();
       const item = this.item();
 
-      this.#selectItemOnMap(mapContainerRef, item);
+      this.#markItemsOnMap(mapContainerRef, itemsAnswered, item);
     });
   }
 
-  #selectItemOnMap(mapContainerRef?: ElementRef<HTMLDivElement>, item?: T) {
-    mapContainerRef?.nativeElement
-      ?.querySelectorAll('path.selected, g.selected')
+  #markItemsOnMap(
+    mapContainerRef: ElementRef<HTMLDivElement> | undefined,
+    itemsAnswered: readonly T[],
+    item?: T,
+  ) {
+    if (!mapContainerRef) {
+      return;
+    }
+
+    mapContainerRef.nativeElement
+      .querySelectorAll(`path.highlighted, g.highlighted`)
+      .forEach((el) => this.#renderer.removeClass(el, 'highlighted'));
+
+    mapContainerRef.nativeElement
+      .querySelectorAll('path.selected, g.selected')
       .forEach((el) => this.#renderer.removeClass(el, 'selected'));
 
+    if (itemsAnswered) {
+      itemsAnswered.forEach((item) => {
+        mapContainerRef.nativeElement
+          .querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
+          .forEach((el) => this.#renderer.addClass(el, 'highlighted'));
+      });
+    }
+
     if (item) {
-      mapContainerRef?.nativeElement
-        ?.querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
+      mapContainerRef.nativeElement
+        .querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
         .forEach((el) => this.#renderer.addClass(el, 'selected'));
     }
   }

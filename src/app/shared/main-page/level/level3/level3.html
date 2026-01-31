@@ -38,11 +38,10 @@
       <geo-patch-question-icon />
     </button>
   </div>
-  <div class="w-full max-w-sm h-1.5 border border-black rounded-lg">
-    <div
-      class="h-full bg-blue-700 transition-all duration-500"
-      [style.width.%]="progressPercent()"
-    ></div>
-  </div>
+  <geo-level-progress
+    class="w-full max-w-sm"
+    [current]="_stateValue.itemIndex + 1"
+    [total]="_stateValue.items.length"
+  />
   }
 </div>

@@ -23,6 +23,7 @@ import { CaretRightFillIcon } from '@shared/icon/caret-right-fill-icon/caret-rig
 import { PencilIcon } from '@shared/icon/pencil-icon/pencil-icon';
 import { ArrowClockwiseIcon } from '@shared/icon/arrow-clockwise-icon/arrow-clockwise-icon';
 import { PatchQuestionIcon } from '@shared/icon/patch-question-icon/patch-question-icon';
+import { LevelProgress } from '@shared/main-page/level-progress/level-progress';
 
 @Component({
   selector: 'geo-level2',
@@ -34,6 +35,7 @@ import { PatchQuestionIcon } from '@shared/icon/patch-question-icon/patch-questi
     NgComponentOutlet,
     ArrowClockwiseIcon,
     PatchQuestionIcon,
+    LevelProgress,
   ],
 })
 export class Level2<T extends Data> {
@@ -62,12 +64,6 @@ export class Level2<T extends Data> {
     const state = this.state();
 
     return state ? state.item : undefined;
-  });
-
-  protected readonly progressPercent = computed<number>(() => {
-    const state = this.state();
-
-    return state ? ((state.itemIndex + 1) / state.items.length) * 100 : 0;
   });
 
   readonly initStateEffect = effect(() => {
@@ -110,43 +106,33 @@ export class Level2<T extends Data> {
 
   #markItemsOnMap(
     mapContainerRef: ElementRef<HTMLDivElement> | undefined,
-    items: readonly T[] | undefined,
+    items: readonly T[],
     item: T | undefined,
   ) {
     if (!mapContainerRef) {
       return;
     }
 
-    this.#removeClassToAllItems(mapContainerRef, 'selected');
-    this.#removeClassToAllItems(mapContainerRef, 'highlighted');
+    mapContainerRef.nativeElement
+      .querySelectorAll(`path.highlighted, g.highlighted`)
+      .forEach((el) => this.#renderer.removeClass(el, 'highlighted'));
+
+    mapContainerRef.nativeElement
+      .querySelectorAll(`path.selected, g.selected`)
+      .forEach((el) => this.#renderer.removeClass(el, 'selected'));
 
     if (items) {
-      this.#addClassToItems(mapContainerRef, 'highlighted', ...items);
+      items.forEach((item) => {
+        mapContainerRef.nativeElement
+          .querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
+          .forEach((el) => this.#renderer.addClass(el, 'highlighted'));
+      });
     }
 
     if (item) {
-      this.#addClassToItems(mapContainerRef, 'selected', item);
+      mapContainerRef.nativeElement
+        .querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
+        .forEach((el) => this.#renderer.addClass(el, 'selected'));
     }
-  }
-
-  #removeClassToAllItems(
-    mapContainerRef: ElementRef<HTMLDivElement>,
-    className: string,
-  ) {
-    mapContainerRef.nativeElement
-      .querySelectorAll(`path.${className}, g.${className}`)
-      .forEach((el) => this.#renderer.removeClass(el, className));
-  }
-
-  #addClassToItems(
-    mapContainerRef: ElementRef<HTMLDivElement>,
-    className: string,
-    ...items: readonly T[]
-  ) {
-    items.forEach((item) => {
-      mapContainerRef?.nativeElement
-        ?.querySelectorAll(`path[id="${item.id}"], g[id="${item.id}"]`)
-        .forEach((el) => this.#renderer.addClass(el, className));
-    });
   }
 }

@@ -1,0 +1,14 @@
+<div class="flex items-center gap-1.5">
+  @if (current()) {
+  <span class="w-6 text-xs text-right font-bold">{{current()}}</span>
+  }
+  <div class="flex-1 h-1.5 border border-black rounded-lg">
+    <div
+      class="h-full bg-blue-700 transition-all duration-500"
+      [style.width.%]="progressPercent()"
+    ></div>
+  </div>
+  @if (total()) {
+  <span class="w-6 text-xs text-left font-bold">{{total()}}</span>
+  }
+</div>

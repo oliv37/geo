@@ -18,6 +18,7 @@ import { CaretRightFillIcon } from '@shared/icon/caret-right-fill-icon/caret-rig
 import { PlayIcon } from '@shared/icon/play-icon/play-icon';
 import { StopIcon } from '@shared/icon/stop-icon/stop-icon';
 import { CaretLeftFillIcon } from '@shared/icon/caret-left-fill-icon/caret-left-fill-icon';
+import { LevelProgress } from '@shared/main-page/level-progress/level-progress';
 
 type PlayStopState = 'play' | 'stop';
 
@@ -32,6 +33,7 @@ const TIMEOUT_DURATION_MS = 5000;
     StopIcon,
     CaretLeftFillIcon,
     NgComponentOutlet,
+    LevelProgress,
   ],
 })
 export class Level1<T extends Data> implements OnDestroy {
@@ -60,23 +62,16 @@ export class Level1<T extends Data> implements OnDestroy {
     return item ? data.findIndex((dataItem) => dataItem.id === item.id) : -1;
   });
 
-  protected readonly progressPercent = computed<number>(() => {
-    const data = this.data();
-    const itemIndex = this.itemIndex();
-
-    return itemIndex > 0 ? ((itemIndex + 1) / data.length) * 100 : 0;
-  });
-
   readonly initItemEffect = effect(() => {
     const data = this.data();
     this.item.set(data[0]);
   });
 
-  readonly selectItemOnMapEffect = effect(() => {
+  readonly markItemOnMapEffect = effect(() => {
     const mapContainerRef = this.mapContainerRef();
     const item = this.item();
 
-    this.#selectItemOnMap(mapContainerRef, item);
+    this.#markItemOnMap(mapContainerRef, item);
   });
 
   readonly playStopEffect = effect(() => {
@@ -95,7 +90,7 @@ export class Level1<T extends Data> implements OnDestroy {
       const mapContainerRef = this.mapContainerRef();
       const item = this.item();
 
-      this.#selectItemOnMap(mapContainerRef, item);
+      this.#markItemOnMap(mapContainerRef, item);
     });
   }
 
@@ -162,7 +157,7 @@ export class Level1<T extends Data> implements OnDestroy {
     this.#animation?.cancel();
   }
 
-  #selectItemOnMap(mapContainerRef?: ElementRef<HTMLDivElement>, item?: T) {
+  #markItemOnMap(mapContainerRef?: ElementRef<HTMLDivElement>, item?: T) {
     mapContainerRef?.nativeElement
       ?.querySelectorAll('path.selected, g.selected')
       .forEach((el) => this.#renderer.removeClass(el, 'selected'));
