@@ -1,5 +1,7 @@
 import type { State } from '@shared/data';
 
+export const usaTitle = 'États des États-Unis';
+
 export const usaData: State[] = [
   { id: 'AL', state: 'Alabama', city: 'Montgomery' },
   { id: 'AK', state: 'Alaska', city: 'Juneau' },

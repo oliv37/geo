@@ -1,5 +1,7 @@
 import type { Country } from '@shared/data';
 
+export const southAmericaTitle = 'Pays d’Amérique du Sud';
+
 export const southAmericaData: Country[] = [
   { id: 'Argentina', country: 'Argentina', city: 'Buenos Aires' },
   { id: 'Bolivia', country: 'Bolivia', city: 'Sucre' },

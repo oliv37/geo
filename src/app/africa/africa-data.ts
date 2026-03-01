@@ -1,5 +1,7 @@
 import type { Country } from '@shared/data';
 
+export const africaTitle = "Pays d'Afrique";
+
 export const africaData: Country[] = [
   { id: 'AO', country: 'Angola', city: 'Luanda' },
   { id: 'BI', country: 'Burundi', city: 'Gitega' },

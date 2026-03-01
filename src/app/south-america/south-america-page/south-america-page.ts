@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { southAmericaData, southAmericaFields } from '../south-america-data';
+import {
+  southAmericaTitle,
+  southAmericaData,
+  southAmericaFields,
+} from '../south-america-data';
 import { SouthAmericaMap } from '../south-america-map/south-america-map';
 import { MainPage } from '@shared/main-page/main-page';
 
@@ -8,6 +12,7 @@ import { MainPage } from '@shared/main-page/main-page';
   templateUrl: './south-america-page.html',
 })
 export class SouthAmericaPage {
+  southAmericaTitle = southAmericaTitle;
   SouthAmericaMap = SouthAmericaMap;
   southAmericaData = southAmericaData;
   southAmericaFields = southAmericaFields;

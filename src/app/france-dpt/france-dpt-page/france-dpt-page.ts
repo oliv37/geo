@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FranceDptMap } from '../france-dpt-map/france-dpt-map';
-import { franceDptData, franceDptFields } from '../france-dpt-data';
+import {
+  franceDptTitle,
+  franceDptData,
+  franceDptFields,
+} from '../france-dpt-data';
 import { MainPage } from '@shared/main-page/main-page';
 
 @Component({
@@ -8,6 +12,7 @@ import { MainPage } from '@shared/main-page/main-page';
   templateUrl: './france-dpt-page.html',
 })
 export class FranceDptPage {
+  franceDptTitle = franceDptTitle;
   FranceDptMap = FranceDptMap;
   franceDptData = franceDptData;
   franceDptFields = franceDptFields;

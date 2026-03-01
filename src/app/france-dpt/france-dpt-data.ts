@@ -1,5 +1,7 @@
 import type { Department } from '@shared/data';
 
+export const franceDptTitle = 'Départements France Métropolitaine';
+
 export const franceDptData: Department[] = [
   { id: '01', department: 'Ain', city: 'Bourg-en-Bresse' },
   { id: '02', department: 'Aisne', city: 'Laon' },
