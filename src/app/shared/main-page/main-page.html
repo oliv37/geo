@@ -1,9 +1,12 @@
-<div class="border-b-2 border-gray-300 flex items-center">
-  <a routerLink="/" class="pl-1 pr-2.5 py-2.5 bg-blue-700/75 fill-white">
+<header class="border-b-2 border-gray-300 flex items-center">
+  <a
+    routerLink="/"
+    class="pl-1 pr-2.5 py-2.5 bg-blue-700/85 fill-white self-stretch flex items-center"
+  >
     <geo-chevron-left-icon iconClass="w-5 h-5"></geo-chevron-left-icon>
   </a>
-  <div class="font-semibold text-gray-700 px-4">{{ title()}}</div>
-</div>
+  <div class="text-sm text-black tracking-wider px-4">{{ title()}}</div>
+</header>
 
 <div class="min-h-dvh h-0 flex flex-col py-2 gap-5">
   <geo-level-picker

@@ -26,7 +26,7 @@
 
 @layer components {
   .map-container svg {
-    @apply absolute top-0 left-0 w-full h-full fill-white stroke-black;
+    @apply absolute top-0 left-0 w-full h-full fill-white stroke-gray-800;
   }
 
   .map-container.clickable path[id], .map-container.clickable g[id] {
